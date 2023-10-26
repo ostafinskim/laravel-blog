@@ -17,13 +17,13 @@
                     </button>
                 </x-slot>
 
-                <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
+                <x-dropdown-item href="/" :active="!$currentCategory">All</x-dropdown-item>
 
                 @foreach ($categories as $category)
 
                     <x-dropdown-item
-                        href="/categories/{{ $category->name }}"
-                        :active="isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : ''"
+                        href="/?category={{ $category->slug }}"
+                        :active="$category->is($currentCategory)"
                         >
                             {{ ucwords($category->name) }}
                     </x-dropdown-item>

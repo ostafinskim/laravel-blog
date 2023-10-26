@@ -21,17 +21,19 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function scopeFilter($query, array $filters)
     {
-        $query->when(
-            $filters['search'] ?? false,
-            fn ($query, $search) =>
+        $query->when( $filters['search'] ?? false, function ($query, $search) {
             $query
                 ->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%')
-        );
+                ->orWhere('body', 'like', '%' . $search . '%');
+        });
 
-        return $query;
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            $query->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
+            });
+        });
     }
 }
