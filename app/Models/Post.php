@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = ['category', 'author'];
     protected $with = ['category', 'author'];
 
     public function category()
@@ -33,6 +33,12 @@ class Post extends Model
         $query->when($filters['category'] ?? false, function ($query, $category) {
             $query->whereHas('category', function ($query) use ($category) {
                 $query->where('slug', $category);
+            });
+        });
+
+        $query->when($filters['author'] ?? false, function ($query, $author) {
+            $query->whereHas('author', function ($query) use ($author) {
+                $query->where('username', $author);
             });
         });
     }
