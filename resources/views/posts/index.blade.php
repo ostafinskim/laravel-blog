@@ -10,6 +10,9 @@
             <p class="text-center">No posts yet. Please come back later.</p>
         @endif
 
+        {{ $posts->links() }}
+
     </main>
     @include('partials.footer')
 </x-layout>
+ 
