@@ -11,15 +11,20 @@ class Post extends Model
     protected $fillable = ['category', 'author'];
     protected $with = ['category', 'author'];
 
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function category()
     {
         // hasOne, hasMany, belongsTo, belongsToMany
         return $this->belongsTo(Category::class);
     }
 
-    public function author()
+    public function comments()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(Comment::class);
     }
 
     public function scopeFilter($query, array $filters)
