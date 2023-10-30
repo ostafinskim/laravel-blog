@@ -13,6 +13,4 @@
         {{ $posts->links() }}
 
     </main>
-    @include('partials.footer')
 </x-layout>
- 

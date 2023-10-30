@@ -42,11 +42,15 @@
             </div>
         </nav>
 
+
+
         {{ $slot }}
 
     </section>
 
     <x-flash />
+
+    @include('partials.footer')
 
 </body>
 
