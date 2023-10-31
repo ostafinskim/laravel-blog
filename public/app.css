@@ -1,9 +1,9 @@
 body {
     background: white;
     color: #222222;
-    font-family: sans-serif;
-    max-width: 70ch;
+    max-width: 600px;
     margin: auto;
+    font-family: sans-serif;
 }
 
 p {

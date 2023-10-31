@@ -1,4 +1,3 @@
-
 @props(['name'])
 
 @if ($name === 'down-arrow')
